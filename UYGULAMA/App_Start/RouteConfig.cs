@@ -11,13 +11,16 @@ namespace UYGULAMA
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            var namespaces = new[] { typeof(Areas.Admin.Controllers.PostsController).Namespace };
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute("Login", "", new { controller = "Auth", action = "Login" }, namespaces);
+            routes.MapRoute("Ogrenci", "ogrenci", new { controller = "Ogrenci", action = "Index" }, namespaces);
+            routes.MapRoute("Ogretmen", "ogretmen", new { controller = "Ogretmen", action = "Index" }, namespaces);
+
+
+
         }
     }
 }
